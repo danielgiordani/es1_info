@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registrazione</title>
+    <style>
+      .error {
+        color: red;
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Registrazione</h1>
+
+    <form id="registrationForm" onsubmit="return validateForm(event)">
+      <div>
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" required />
+      </div>
+      <div>
+        <label for="cognome">Cognome:</label>
+        <input type="text" id="cognome" required />
+      </div>
+      <div>
+        <label for="eta">Età:</label>
+        <input type="number" id="eta" required />
+      </div>
+      <p id="errorMessage" class="error">
+        Nome e cognome devono avere almeno 3 caratteri!
+      </p>
+      <button type="submit">Invia</button>
+    </form>
+
+    <script>
+      function validateForm(event) {
+        event.preventDefault();
+
+        const nome = document.getElementById("nome").value;
+        const cognome = document.getElementById("cognome").value;
+        const eta = parseInt(document.getElementById("eta").value);
+        const errorMessage = document.getElementById("errorMessage");
+
+        if (nome.length < 3 || cognome.length < 3) {
+          errorMessage.style.display = "block";
+          return false;
+        }
+
+        // Salva i dati nel localStorage
+        localStorage.setItem("nome", nome);
+        localStorage.setItem("cognome", cognome);
+        localStorage.setItem("eta", eta);
+
+        // Reindirizza alla pagina appropriata
+        if (eta >= 18) {
+          window.location.href = "maggiorenne.html";
+        } else {
+          window.location.href = "minorenne.html";
+        }
+      }
+    </script>
+  </body>
+</html>
