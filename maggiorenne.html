@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pagina Maggiorenni</title>
+  </head>
+  <body>
+    <div id="message"></div>
+
+    <script>
+      window.onload = function () {
+        const eta = parseInt(localStorage.getItem("eta"));
+        const nome = localStorage.getItem("nome");
+        const messageDiv = document.getElementById("message");
+
+        if (eta >= 18) {
+          messageDiv.innerHTML = `<h1>Benvenuto, ${nome}</h1>`;
+        } else {
+          messageDiv.innerHTML = "<h1>Accesso non consentito</h1>";
+        }
+      };
+    </script>
+  </body>
+</html>
